@@ -1,6 +1,6 @@
 #pragma once
 
-struct CompensationRecord
+struct CompensationRecord_t
 {
 	float simulation_time;
 
@@ -11,22 +11,16 @@ struct CompensationRecord
 	math::matrix3x4_t matrix[ 128 ];
 };
 
-struct ConVars
+struct ConVars_t
 {
 	bool initialize = true;
 
-	ConVar* update_rate;
-	ConVar* max_update_rate;
-	ConVar* interp;
-	ConVar* interp_ratio;
-	ConVar* min_interp_ratio;
-	ConVar* max_interp_ratio;
-	ConVar* max_unlag;
+	ConVar *update_rate, *max_update_rate, *interp, *interp_ratio, *min_interp_ratio, *max_interp_ratio, *max_unlag;
 };
 
-extern std::deque< CompensationRecord > records[65];
+extern std::deque< CompensationRecord_t > records[ 65 ];
 
-extern ConVars cvars;
+extern ConVars_t cvars;
 
 namespace lagcompensation
 {

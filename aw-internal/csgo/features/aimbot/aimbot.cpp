@@ -30,9 +30,9 @@ namespace aimbot
 		return true;
 	}
 
-	void select_points( AimbotData& data )
+	void select_points( AimbotData_t &data )
 	{
-		const auto append_point = []( AimbotData& data, math::vec3_t point, player_t* pl )
+		const auto append_point = []( AimbotData_t& data, math::vec3_t point, player_t* pl )
 		{
 			if ( point.zero( ) )
 				return;
@@ -47,20 +47,9 @@ namespace aimbot
 		{
 			append_point( data, data.pl->get_hitbox_pos( i ), data.pl );
 		}
-
-		if ( !config::get< bool >( ctx::cfg.aim_lagcompensation ) )
-			return;
-
-		for ( auto record : records[ data.pl->Index( ) ] )
-		{
-			if ( !record.matrix || !lagcompensation::valid_tick( record.simulation_time ) )
-				continue;
-
-			append_point( data, record.head, record.pl );
-		}
 	}
 
-	void filter_angles( AimbotData& data )
+	void filter_angles( AimbotData_t &data )
 	{
 		if ( data.points.empty( ) )
 			return;
@@ -74,7 +63,7 @@ namespace aimbot
 		}
 	}
 
-	void select_angles( AimbotData& data )
+	void select_angles( AimbotData_t &data )
 	{
 		if ( data.points.empty( ) )
 			return;
@@ -113,11 +102,11 @@ namespace aimbot
 		if ( !can_shoot( weapon ) )
 			return;
 
-		game::for_every_player( []( player_t * pl ) -> bool {
+		game::for_every_player( []( player_t* pl ) -> bool {
 			if ( !is_valid( pl ) )
 				return false;
 
-			AimbotData data( pl );
+			AimbotData_t data( pl );
 	
 			select_points( data );
 			filter_angles( data );

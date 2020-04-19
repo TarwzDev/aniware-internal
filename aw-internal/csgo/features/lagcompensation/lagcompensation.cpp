@@ -1,8 +1,8 @@
 #include "../../csgo.hpp"
 
-std::deque< CompensationRecord > records[ 65 ];
+std::deque< CompensationRecord_t > records[ 65 ];
 
-ConVars cvars;
+ConVars_t cvars;
 
 namespace lagcompensation
 {
@@ -28,7 +28,7 @@ namespace lagcompensation
 		if ( !net_channel )
 			return false;
 
-		const float delta_time = std::clamp( net_channel->GetLatency( FLOW_OUTGOING ) + lerp_time( ),
+		const float delta_time = std::clamp( net_channel->GetLatency( flow_outgoing ) + lerp_time( ),
 			0.f, cvars.max_unlag->GetFloat( ) ) - ( ctx::csgo.globals->curtime - time );
 
 		if ( delta_time )
@@ -54,7 +54,7 @@ namespace lagcompensation
 		return true;
 	}
 
-	bool get_player_record( player_t* pl, CompensationRecord& record )
+	bool get_player_record( player_t* pl, CompensationRecord_t &record )
 	{
 		if ( !pl->SetupBones( record.matrix, 128, 0x7FF00, ctx::csgo.globals->curtime ) )
 			return false;
@@ -107,11 +107,6 @@ namespace lagcompensation
 				records->clear( );
 			}
 
-			if ( ctx::client.cmd->buttons.has_flag( in_attack ) )
-			{
-
-			}
-
 			return;
 		}
 
@@ -128,12 +123,12 @@ namespace lagcompensation
 
 			clear_variables( pl );
 
-			CompensationRecord record{};
+			CompensationRecord_t record{};
 
 			if ( get_player_record( pl, record ) )
 				records[ index ].push_front( record );
 
-			while ( records[ index ].size( ) <= 3 && ( records[ index ].size( ) > static_cast< size_t >( time_to_ticks ( config::get< float >( ctx::cfg.lagcompensation_ms ) / 1000.f ) ) ) )
+			while ( records[ index ].size( ) <= 3 && ( records[ index ].size( ) > static_cast< size_t >( time_to_ticks( config::get< float >( ctx::cfg.lagcompensation_ms ) / 1000.f ) ) ) )
 				records[ index ].pop_back( );
 
 			return false;

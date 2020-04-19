@@ -330,3 +330,5 @@ ASALocalRun/
 .mfractor/
 /aw-internal/output/injector.exe
 /aw-internal/output/inj.exe
+/aw-internal/intermediates
+/aw-internal/output

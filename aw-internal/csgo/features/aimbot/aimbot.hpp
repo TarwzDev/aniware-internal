@@ -1,9 +1,9 @@
 #pragma once
 
-struct AimbotData
+struct AimbotData_t
 {
-	AimbotData( ) = default;
-	AimbotData( player_t* p ) : pl( p ){};
+	AimbotData_t( ) = default;
+	AimbotData_t( player_t* p ) : pl( p ){};
 
 	std::vector< math::vec3_t > points;
 	player_t* pl;

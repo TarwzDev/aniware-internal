@@ -1,18 +1,18 @@
 #include "../../csgo.hpp"
 #include "../lagcompensation/lagcompensation.hpp"
 
-enum HealthType
+enum HealthType_t : int
 {
-	NOHEALTH,
-	NUMBER,
-	BAR,
+	nohealth,
+	number,
+	bar,
 };
 
-enum BoxType
+enum BoxType_t : int
 {
-	NOBOX,
-	RECTANGLE,
-	CORNERS
+	nobox = 0,
+	rectangle,
+	corners
 };
 
 namespace players
@@ -27,14 +27,10 @@ namespace players
 	void dot( player_t* pl )
 	{
 		math::vec3_t dst{};
-		
-		col_t color{};
 
 		if ( static_cast< bool >( ctx::csgo.debugoverlay->WorldToScreen( pl->get_eye_pos( ), dst ) != 1 ) )
 		{
-			ctx::client.local->can_see_pos( pl, pl->get_eye_pos( ) ) ? color = col_t{ 100, 255, 100 } : color = col_t{ 255, 100, 100 };
-
-			render::text( render::fonts::m_main, { dst.x, dst.y }, color, { render::fonts::FONT_CENTER_X | render::fonts::FONT_CENTER_Y }, "x" );
+			render::text(render::fonts::m_main, { dst.x, dst.y }, { 255, 255, 255 }, { render::fonts::FONT_CENTER_X | render::fonts::FONT_CENTER_Y }, "x");
 		}
 	}
 
@@ -72,11 +68,11 @@ namespace players
 
 		switch ( config::get< int >( ctx::cfg.extrasensory_health_type ) )
 		{
-		case HealthType::NUMBER:
+		case HealthType_t::number:
 			render::text( render::fonts::m_main, { bbox.x + bbox.w * 0.5f, bbox.y - 7 }, { 255, 255, 255 }, { render::fonts::FONT_CENTER_Y }, fmt::format( " [ {:d} ]", pl->get_health( ) ) );
 			break;
 
-		case HealthType::BAR:
+		case HealthType_t::bar:
 			render::rect_filled( { bbox.x - 6, bbox.y - 1 }, { 3, bbox.z + 2 }, { 0, 0, 0, 255 } );
 			render::rect_filled( { bbox.x - 5, bbox.y + ( bbox.z - bbox.z * ( std::clamp< int >( player_health, 0, 100.f) / 100.f) ) }, { 1, bbox.z * ( std::clamp< int >( player_health, 0, 100 ) / 100.f ) - ( player_health >= 100 ? 0 : -1 ) }, player_color );
 			break;
@@ -87,12 +83,13 @@ namespace players
 	{
 		switch ( config::get< int >( ctx::cfg.extrasensory_box_type ) )
 		{
-		case BoxType::RECTANGLE:
+		case BoxType_t::rectangle:
 			render::rect( { bbox.x - 1, bbox.y - 1 }, { bbox.w + 2, bbox.z + 2 }, { 10, 10, 10 } );
 			render::rect( { bbox.x + 1, bbox.y + 1 }, { bbox.w - 2, bbox.z - 2 }, { 10, 10, 10 } );
 			render::rect( { bbox.x, bbox.y }, { bbox.w, bbox.z }, { 255, 255, 255 } );
 			break;
-		case BoxType::CORNERS:
+
+		case BoxType_t::corners:
 			render::corner( { bbox.x - 1, bbox.y - 1 }, { bbox.w + 2, bbox.z + 2 }, { 10, 10, 10 } );
 			render::corner( { bbox.x + 1, bbox.y + 1 }, { bbox.w - 2, bbox.z - 2 }, { 10, 10, 10 } );
 			render::corner( { bbox.x, bbox.y }, { bbox.w, bbox.z }, { 255, 255, 255 } );
@@ -105,7 +102,7 @@ namespace players
 		if ( !ctx::csgo.engine->IsInGame( ) || !ctx::csgo.engine->IsConnected( ) )
 			return;
 
-		game::for_every_player( []( player_t * pl ) -> bool {
+		game::for_every_player( []( player_t* pl ) -> bool {
 			math::vec4_t bbox {};
 			if ( !pl->get_bbox( bbox ) )
 				return false;
