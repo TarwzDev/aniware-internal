@@ -28,6 +28,7 @@
     <ClInclude Include="csgo\features\features.hpp" />
     <ClInclude Include="csgo\features\lagcompensation\lagcompensation.hpp" />
     <ClInclude Include="csgo\features\misc\movement.hpp" />
+    <ClInclude Include="csgo\features\skinchanger\skinchanger.hpp" />
     <ClInclude Include="csgo\features\visuals\players.hpp" />
     <ClInclude Include="csgo\hooks\hook_handler.hpp" />
     <ClInclude Include="csgo\menu.hpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="csgo\features\aimbot\aimbot.cpp" />
     <ClCompile Include="csgo\features\lagcompensation\lagcompensation.cpp" />
     <ClCompile Include="csgo\features\misc\movement.cpp" />
+    <ClCompile Include="csgo\features\skinchanger\skinchanger.cpp" />
     <ClCompile Include="csgo\features\visuals\players.cpp" />
     <ClCompile Include="csgo\hooks\functions\create_move.cpp" />
     <ClCompile Include="csgo\hooks\functions\do_screen_effects.cpp" />

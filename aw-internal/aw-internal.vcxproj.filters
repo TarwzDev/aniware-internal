@@ -120,6 +120,7 @@
     <ClInclude Include="csgo\sdk\source_engine\IPhysicsSurface.hpp" />
     <ClInclude Include="csgo\sdk\source_engine\IEngineSound.hpp" />
     <ClInclude Include="csgo\sdk\source_engine\ITrace.hpp" />
+    <ClInclude Include="csgo\features\skinchanger\skinchanger.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="csgo\features\misc\movement.cpp" />
@@ -158,5 +159,6 @@
     <ClCompile Include="csgo\hooks\functions\is_hltv.cpp" />
     <ClCompile Include="csgo\features\lagcompensation\lagcompensation.cpp" />
     <ClCompile Include="csgo\hooks\functions\player_step.cpp" />
+    <ClCompile Include="csgo\features\skinchanger\skinchanger.cpp" />
   </ItemGroup>
 </Project>
