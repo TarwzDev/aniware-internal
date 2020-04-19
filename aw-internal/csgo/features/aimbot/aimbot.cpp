@@ -10,7 +10,7 @@ namespace aimbot
 		if( pl == ctx::client.local )
 			return false;
 
-		if ( !pl->is_alive( ) || pl->get_flags( ).has_flag( fl_frozen ) )
+		if ( !pl->is_alive( ) || pl->get_flags( ).has_flag( Flags_t::fl_frozen ) )
 			return false;
 
 		if ( pl->is_immune( ) )
@@ -24,7 +24,7 @@ namespace aimbot
 		if ( !weapon || weapon->get_ammo( ) <= 0 )
 			return false;
 		
-		if ( weapon->get_definition_index( ) == weapon_revolver && weapon->ready_time( ) > ctx::csgo.globals->curtime )
+		if ( ( weapon->get_definition_index( ) == Weapon_t::weapon_revolver ) && ( weapon->ready_time( ) > ctx::csgo.globals->curtime ) )
 			return false;
 
 		return true;
@@ -68,7 +68,7 @@ namespace aimbot
 
 		if ( config::get< bool >( ctx::cfg.aim_shoot ) )
 		{
-			ctx::client.cmd->buttons.add_flag( in_attack );
+			ctx::client.cmd->buttons.add_flag( ButtonFlags_t::in_attack );
 		}
 	}
 

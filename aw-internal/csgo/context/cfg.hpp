@@ -17,7 +17,6 @@ namespace ctx
 		ADD_CFG_ITEM( float, lagcompensation_ms, 0.f );
 
 		ADD_CFG_ITEM( bool, draw_fog, true );
-
 		ADD_CFG_ITEM( float, view_fov, 0.f );
 		ADD_CFG_ITEM( float, world_fov, 0.f );
 

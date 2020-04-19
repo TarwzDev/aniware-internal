@@ -36,9 +36,11 @@ struct entity_t : public IClientEntity
 
 	NETVAR( int, get_team, "DT_BaseEntity", "m_iTeamNum" );
 	NETVAR( int, get_survival_team, "DT_BaseEntity", "m_nSurvivalTeam" );
+
 	NETVAR( math::vec3_t, get_origin, "DT_BaseEntity", "m_vecOrigin" );
 	NETVAR( math::vec3_t, get_mins, "DT_BaseEntity", "m_vecMins" );
 	NETVAR( math::vec3_t, get_maxs, "DT_BaseEntity", "m_vecMaxs" );
+
 	NETVAR( float, get_simtime, "DT_BaseEntity", "m_flSimulationTime" );
 
 	NETVARADD( math::matrix3x4_t, get_coord_frame, "DT_BaseEntity", "m_CollisionGroup", -0x30 );
@@ -66,8 +68,8 @@ struct econ_entity_t : public animating_t
 
 struct weapon_t : public econ_entity_t
 {
-	NETVAR( short, get_definition_index, "DT_WeaponBaseItem", "m_iItemDefinitionIndex" );
 	NETVAR( int, get_ammo, "DT_WeaponBaseItem", "m_iClip1" );
+	NETVAR( short, get_definition_index, "DT_WeaponBaseItem", "m_iItemDefinitionIndex" );
 	NETVAR( float, ready_time, "DT_WeaponBaseItem", "m_flPostponeFireReadyTime" );
 	
 	NETVAR( CBaseHandle, get_owner, "DT_BaseCombatWeapon", "m_hOwner" );
@@ -96,6 +98,7 @@ struct player_t : public combat_character_t
 
 	NETVAR(int, get_armor, "DT_CSPlayer", "m_ArmorValue");
 	NETVAR( int, get_health, "DT_BasePlayer", "m_iHealth" );
+	NETVAR( int*, get_weapons, "DT_BasePlayer", "m_hMyWeapons" );
 
 	NETVAR( short, get_lifestate, "DT_BasePlayer", "m_lifeState" );
 	NETVAR( CBaseHandle, get_weapon_handle, "DT_BaseCombatCharacter", "m_hActiveWeapon" );

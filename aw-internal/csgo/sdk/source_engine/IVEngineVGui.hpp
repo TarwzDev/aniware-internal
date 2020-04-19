@@ -18,7 +18,4 @@ enum PaintMode_t
 	PAINT_CURSOR = ( 1 << 2 ),
 };
 
-struct IVEngineVGui
-{
-	
-};
+struct IVEngineVGui;

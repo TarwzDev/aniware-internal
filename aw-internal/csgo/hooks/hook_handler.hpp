@@ -26,33 +26,33 @@ struct hook_handler_t;
 
 namespace hooks
 {
-	std::unordered_map<uint32_t, hook_t>& get_map( );
-	hook_handler_t& get( );
+	std::unordered_map< uint32_t, hook_t > &get_map( );
+	hook_handler_t &get( );
 
 	void init( );
 	void undo( );
 
 	enum idx : int
 	{
-		SHOULD_DRAW_FOG = 17,
-		OVERRIDE_VIEW = 18,
-		CREATE_MOVE = 24,
-		GET_VIEWMODEL_FOV = 35,
-		DO_POST_SCREEN_SPACE_FX = 44,
-		IS_HLTV = 93,
-		LEVEL_INIT_POST_ENTITY = 6,
-		LEVEL_SHUTDOWN = 7,
-		FRAME_STAGE_NOTIFY = 37,
-		LOCK_CURSOR = 67,
-		DRAW_SET_COLOR = 15,
-		RELOAD_FONT = 4,
-		ENGINE_PAINT = 14,
-		DRAW_MODEL_EXECUTE = 21,
-		SCENE_END = 9,
-		RENDER_SMOKE_OVERLAY = 41,
-		GET_MATERIAL = 84,
-		DO_EXTRA_BONE_PROC = 195,
-		SETUP_BONES = 13
+		should_draw_fog = 17,
+		override_view = 18,
+		create_move = 24,
+		get_viewmodel_fov = 35,
+		do_post_screen_space_fx = 44,
+		is_hltv = 93,
+		level_init_post_entity = 6,
+		level_shutdown = 7,
+		frame_stage_notify = 37,
+		lock_cursor = 67,
+		draw_set_color = 15,
+		reload_font = 4,
+		engine_paint = 14,
+		draw_model_execute = 21,
+		scene_end = 9,
+		render_smoke_overlay = 41,
+		get_material = 84,
+		do_extra_bone_proc = 195,
+		setup_bones = 13
 	};
 }
 
@@ -116,16 +116,16 @@ struct hook_handler_t
 	static void player_hurt( IGameEvent* e );
 	static void player_step( IGameEvent* e );
 
-	CREATE_HOOK( ctx::csgo.enginevgui, idx::ENGINE_PAINT, paint );
-	CREATE_HOOK( ctx::csgo.clientmode, idx::CREATE_MOVE, create_move );
-	CREATE_HOOK( ctx::csgo.client, idx::FRAME_STAGE_NOTIFY, frame_stage_notify );
-	CREATE_HOOK( ctx::csgo.clientmode, idx::SHOULD_DRAW_FOG, draw_fog );
-	CREATE_HOOK( ctx::csgo.clientmode, idx::GET_VIEWMODEL_FOV, viewmodel_fov );
-	CREATE_HOOK( ctx::csgo.clientmode, idx::OVERRIDE_VIEW, override_view );
-	CREATE_HOOK( ctx::csgo.clientmode, idx::DO_POST_SCREEN_SPACE_FX, do_screen_effects );
-	CREATE_HOOK( ctx::csgo.engine, idx::IS_HLTV, is_hltv );
+	CREATE_HOOK( ctx::csgo.enginevgui, idx::engine_paint, paint );
+	CREATE_HOOK( ctx::csgo.clientmode, idx::create_move, create_move );
+	CREATE_HOOK( ctx::csgo.client, idx::frame_stage_notify, frame_stage_notify );
+	CREATE_HOOK( ctx::csgo.clientmode, idx::should_draw_fog, draw_fog );
+	CREATE_HOOK( ctx::csgo.clientmode, idx::get_viewmodel_fov, viewmodel_fov );
+	CREATE_HOOK( ctx::csgo.clientmode, idx::override_view, override_view );
+	CREATE_HOOK( ctx::csgo.clientmode, idx::do_post_screen_space_fx, do_screen_effects );
+	CREATE_HOOK( ctx::csgo.engine, idx::is_hltv, is_hltv );
 
-	CREATE_HOOK( ctx::csgo.scheme_manager, idx::RELOAD_FONT, reload_fonts );
+	CREATE_HOOK( ctx::csgo.scheme_manager, idx::reload_font, reload_fonts );
 
 	CREATE_EVENT_CALLBACK( player_hurt );
 	CREATE_EVENT_CALLBACK( player_step );
