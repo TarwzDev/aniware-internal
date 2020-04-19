@@ -32,7 +32,7 @@ namespace aimbot
 
 	void select_points( AimbotData_t &data )
 	{
-		const auto append_point = []( AimbotData_t& data, math::vec3_t point, player_t* pl )
+		const auto append_point = []( AimbotData_t &data, math::vec3_t point, player_t* pl )
 		{
 			if ( point.zero( ) )
 				return;
@@ -43,7 +43,7 @@ namespace aimbot
 			data.points.push_back( point );
 		};
 
-		for ( auto i = config::get< bool >( ctx::cfg.aim_body ) ? 2 : 0; i < HITBOX_MAX; i++ )
+		for ( auto i = config::get< bool >( ctx::cfg.aim_body ) ? 2 : 0; i < hitbox_max; i++ )
 		{
 			append_point( data, data.pl->get_hitbox_pos( i ), data.pl );
 		}

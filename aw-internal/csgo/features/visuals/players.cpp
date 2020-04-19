@@ -43,16 +43,20 @@ namespace players
 
 			math::vec3_t dst{};
 
+			col_t color{};
+
+			( ctx::client.local->can_see_pos( record.pl, record.head ) ) ? color = { 200, 255, 200 } : color = { 255, 200, 200 };
+
 			if ( static_cast< bool >( ctx::csgo.debugoverlay->WorldToScreen( record.head, dst ) != 1 ) )
 			{
-				render::text(render::fonts::m_main, { dst.x, dst.y }, { 255, 255, 255 }, { render::fonts::FONT_CENTER_X | render::fonts::FONT_CENTER_Y }, "x");
+				render::text(render::fonts::m_main, { dst.x, dst.y }, color, { render::fonts::FONT_CENTER_X | render::fonts::FONT_CENTER_Y }, "x");
 			}
 		}
 	}
 
 	void health( math::vec4_t bbox, player_t* pl )
 	{
-		const auto get_health_color = []( player_t* pl, int health )
+		const auto get_health_color = [ ]( player_t* pl, int health )
 		{
 			col_t health_color { static_cast< int >( 255 - health * 2.55f ), static_cast< int >( health * 2.55f ), 0, 255 };
 			{
@@ -63,8 +67,7 @@ namespace players
 		};
 
 		const auto player_health = pl->get_health( );
-
-		const auto player_color = get_health_color( pl, player_health );
+		const auto player_color = get_health_color(pl, player_health);
 
 		switch ( config::get< int >( ctx::cfg.extrasensory_health_type ) )
 		{
