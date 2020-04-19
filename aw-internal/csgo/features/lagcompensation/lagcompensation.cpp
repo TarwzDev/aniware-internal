@@ -59,7 +59,7 @@ namespace lagcompensation
 		if ( !pl->SetupBones( record.matrix, 128, 0x7FF00, ctx::csgo.globals->curtime ) )
 			return false;
 
-		record.head = pl->get_hitbox_pos( hitbox_head );
+		record.head = pl->get_hitbox_pos( Hitboxes_t::hitbox_head );
 		record.view = pl->get_eye_angles( );
 		record.simulation_time = pl->get_simtime( );
 		record.pl = pl;

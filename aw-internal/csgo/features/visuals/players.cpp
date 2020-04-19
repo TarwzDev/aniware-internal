@@ -28,7 +28,7 @@ namespace players
 	{
 		math::vec3_t dst{};
 
-		if ( static_cast< bool >( ctx::csgo.debugoverlay->WorldToScreen( pl->get_eye_pos( ), dst ) != 1 ) )
+		if ( static_cast< bool >( ctx::csgo.debugoverlay->WorldToScreen( pl->get_hitbox_pos( Hitboxes_t::hitbox_head ), dst ) != 1 ) )
 		{
 			render::text(render::fonts::m_main, { dst.x, dst.y }, { 255, 255, 255 }, { render::fonts::FONT_CENTER_X | render::fonts::FONT_CENTER_Y }, "x");
 		}

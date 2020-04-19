@@ -49,20 +49,6 @@ namespace aimbot
 		}
 	}
 
-	void filter_angles( AimbotData_t &data )
-	{
-		if ( data.points.empty( ) )
-			return;
-
-		for ( auto i = 0; i < data.points.size( ); i++ )
-		{
-			if ( !data.points.at( i ).valid( ) )
-			{
-				data.points.erase( std::begin( data.points ) + i );
-			}
-		}
-	}
-
 	void select_angles( AimbotData_t &data )
 	{
 		if ( data.points.empty( ) )
@@ -109,7 +95,6 @@ namespace aimbot
 			AimbotData_t data( pl );
 	
 			select_points( data );
-			filter_angles( data );
 			select_angles( data );
 
 			if ( !data.points.empty( ) )
