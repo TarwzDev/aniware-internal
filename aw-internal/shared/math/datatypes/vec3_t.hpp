@@ -68,7 +68,7 @@ namespace math
 	
 		inline bool invalid( ) const
 		{
-			return std::isfinite( x ) && std::isfinite( y ) && std::isfinite( z );
+			return !std::isfinite( x ) && !std::isfinite( y ) && !std::isfinite( z );
 		}
 
 		inline bool zero( ) const
