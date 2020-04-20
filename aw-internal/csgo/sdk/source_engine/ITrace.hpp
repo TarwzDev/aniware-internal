@@ -166,12 +166,12 @@ struct trace_t
 	}
 };
 
-enum tracetype_t 
+enum tracetype_t : int
 {
-	TRACE_EVERYTHING = 0,
-	TRACE_WORLD_ONLY,
-	TRACE_ENTITIES_ONLY,
-	TRACE_EVERYTHING_FILTER_PROPS
+	trace_everything = 0,
+	trace_world_only,
+	trace_entities_only,
+	trace_everything_filter_props
 };
 
 struct trace_filter
@@ -189,7 +189,7 @@ struct trace_filter_entity : public trace_filter
 
 	tracetype_t GetTraceType( ) const 
 	{
-		return TRACE_EVERYTHING;
+		return trace_everything;
 	}
 
 	void* skip;
@@ -202,14 +202,5 @@ struct trace_filter_entity : public trace_filter
 
 struct ITrace
 {
-	/*
-	virtual int get_point_contents( const math::vec3_t& pos, int mask = MASK_ALL, IHandleEntity** ent = nullptr ) = 0;
-	virtual int get_point_contents_world( const math::vec3_t& pos, int mask = MASK_ALL ) = 0;
-	virtual int get_point_contents_collideable( void* collide, const math::vec3_t& pos ) = 0;
-	virtual void clip_ray_to_entity( const ray_t& ray, unsigned int mask, player_t* ent, trace_t* trace ) = 0;
-	virtual void clip_ray_to_collideable( const ray_t& ray, unsigned int mask, void* collide, trace_t* trace ) = 0;
-	virtual void TraceRay( const ray_t& ray, unsigned int mask, trace_filter* filter, trace_t* trace ) = 0;
-	*/
-
 	VFUNC( 5, TraceRay( const ray_t& ray, unsigned int mask, trace_filter* filter, trace_t* trace ), void( __thiscall* )( void*, const ray_t&, unsigned int, trace_filter*, trace_t* ) )( ray, mask, filter, trace );
 };

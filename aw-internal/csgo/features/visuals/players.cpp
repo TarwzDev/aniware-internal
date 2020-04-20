@@ -3,7 +3,7 @@
 
 enum HealthType_t : int
 {
-	nohealth,
+	nohealth = 0,
 	number,
 	bar,
 };

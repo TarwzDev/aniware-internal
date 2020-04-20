@@ -1,6 +1,6 @@
 #pragma once
 
-using CBaseHandle = unsigned long;
+using basehandle_t = unsigned long;
 
 class IClientUnknown;
 class ClientClass;
@@ -83,8 +83,8 @@ class IHandleEntity
 {
 public:
 	virtual ~IHandleEntity( ) {}
-	virtual void SetRefEHandle( const CBaseHandle& handle ) = 0;
-	virtual const CBaseHandle& GetRefEHandle( ) const = 0;
+	virtual void SetRefEHandle( const basehandle_t &handle ) = 0;
+	virtual const basehandle_t& GetRefEHandle( ) const = 0;
 };
 
 class ICollideable;
@@ -115,7 +115,7 @@ public:
 	virtual IClientAlphaProperty* GetClientAlphaProperty( ) = 0;
 };
 
-enum Flags_t : int
+enum flags_t : int
 {
 	fl_onground = 1 << 0,
 	fl_ducking = 1 << 1,
@@ -124,7 +124,7 @@ enum Flags_t : int
 	fl_fakeclient = 1 << 8,
 };
 
-enum Weapon_t : int
+enum weapon_index_t : int
 {
 	weapon_none = 0,
 	weapon_deagle,
@@ -141,6 +141,7 @@ enum Weapon_t : int
 	weapon_m4a1 = 16,
 	weapon_mac10,
 	weapon_p90 = 19,
+	weapon_zone_repulsor,
 	weapon_mp5sd = 23,
 	weapon_ump45,
 	weapon_xm1014,
@@ -157,7 +158,7 @@ enum Weapon_t : int
 	weapon_p250,
 	weapon_shield,
 	weapon_scar20,
-	weapon_sg558,
+	weapon_sg556,
 	weapon_ssg08,
 	weapon_knifegg,
 	weapon_knife,
@@ -189,6 +190,7 @@ enum Weapon_t : int
 	weapon_snowball,
 	weapon_bumpmine,
 	weapon_knife_bayonet = 500,
+	weapon_knife_css = 503,
 	weapon_knife_flip = 505,
 	weapon_knife_gut,
 	weapon_knife_karambit,
@@ -196,23 +198,29 @@ enum Weapon_t : int
 	weapon_knife_tactical,
 	weapon_knife_falchion = 512,
 	weapon_knife_survival_bowie = 514,
-	weapon_knife_butterfly,
+	weapon_knife_butterfly = 515,
 	weapon_knife_push,
-	weapon_knife_ursus = 519,
+	weapon_knife_cord,
+	weapon_knife_canis,
+	weapon_knife_ursus,
 	weapon_knife_gypsy_jackknife,
-	weapon_knife_stiletto = 522,
+	weapon_knife_outdoor,
+	weapon_knife_stiletto,
 	weapon_knife_widowmaker,
+	weapon_knife_skeleton = 525,
 	glove_studded_bloodhound = 5027,
-	glove_t_side = 5028,
-	glove_ct_side = 5029,
-	glove_sporty = 5030,
-	glove_slick = 5031,
-	glove_leather_wrap = 5032,
-	glove_motorcycle = 5033,
-	glove_specialist = 5034
+	glove_t_side,
+	glove_ct_side,
+	glove_sporty,
+	glove_slick,
+	glove_leather_wrap,
+	glove_motorcycle,
+	glove_specialist,
+	glove_hydra,
+	weapon_max
 };
 
-enum BodyState_t : int
+enum bodystate_t : int
 {
 	alive = 0,
 	dying,

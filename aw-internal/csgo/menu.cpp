@@ -47,6 +47,7 @@ namespace menu
 				tab1->add( std::make_shared<gui::controls::c_checkbox>( "silent", &config::get_item( ctx::cfg.aim_silent ) ) );
 				tab1->add( std::make_shared<gui::controls::c_checkbox>( "recoil compensation", &config::get_item( ctx::cfg.aim_recoilcompensation ) ) );
 				tab1->add( std::make_shared<gui::controls::c_slider>( "hitchance", &config::get_item( ctx::cfg.aim_hitchance ), 0.f, 100.f ) );
+				tab1->add( std::make_shared<gui::controls::c_slider>( "fov", &config::get_item( ctx::cfg.aim_fov ), 0.f, 360.f ) );
 			}
 
 			tab1->add( std::make_shared<gui::controls::c_separator>( ".lag compensation" ) );

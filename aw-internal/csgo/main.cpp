@@ -51,6 +51,7 @@ int __stdcall DllMain( void* instance, unsigned long call_reason, void* reserved
 	if ( call_reason == DLL_PROCESS_ATTACH )
 	{
 		DisableThreadLibraryCalls( static_cast< HMODULE >( instance ) );
+
 		if ( auto handle = CreateThread( nullptr, NULL, entry, instance, NULL, nullptr ) )
 		{
 			CloseHandle( handle );

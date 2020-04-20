@@ -8,8 +8,7 @@ bool player_t::get_bbox( math::vec4_t& box )
 
 	math::vec3_t screen_boxes[ 8 ];
 
-	math::vec3_t points[] =
-	{
+	math::vec3_t points[] = {
 		{ min.x, min.y, min.z },
 		{ min.x, max.y, min.z },
 		{ max.x, max.y, min.z },
@@ -77,7 +76,7 @@ player_info_t player_t::get_player_info( )
 
 math::vec3_t player_t::get_eye_pos( )
 {
-	auto pos = math::vec3_t{};
+	math::vec3_t pos{};
 	weapon_shootpos( &pos );
 
 	return pos;
@@ -125,7 +124,7 @@ bool player_t::is_alive( )
 	if ( !this )
 		return false;
 
-	return get_lifestate( ) == BodyState_t::alive;
+	return get_lifestate( ) == bodystate_t::alive;
 }
 
 bool player_t::is_enemy( )

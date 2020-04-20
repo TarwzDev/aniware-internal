@@ -17,6 +17,7 @@ void __fastcall hook_handler_t::paint( REGISTERS, int mode )
 			render::init( );
 
 			players::render( );
+			extras::render( );
 			menu::render( );
 
 			input::update_mouse( );

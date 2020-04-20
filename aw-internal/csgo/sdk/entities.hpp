@@ -17,7 +17,7 @@ struct entity_t : public IClientEntity
 	}
 
 	template< typename t = entity_t >
-	static t * get( const CBaseHandle handle )
+	static t * get( const basehandle_t handle )
 	{
 		return reinterpret_cast< t* >( ctx::csgo.entlist->GetClientEntityFromHandle( handle ) );
 	}
@@ -61,10 +61,7 @@ struct animating_t : public entity_t
 	NETVAR( int, get_hitbox_set, "DT_BaseAnimating", "m_nHitboxSet" );
 };
 
-struct econ_entity_t : public animating_t
-{
-
-};
+struct econ_entity_t : public animating_t {};
 
 struct weapon_t : public econ_entity_t
 {
@@ -72,7 +69,7 @@ struct weapon_t : public econ_entity_t
 	NETVAR( short, get_definition_index, "DT_WeaponBaseItem", "m_iItemDefinitionIndex" );
 	NETVAR( float, ready_time, "DT_WeaponBaseItem", "m_flPostponeFireReadyTime" );
 	
-	NETVAR( CBaseHandle, get_owner, "DT_BaseCombatWeapon", "m_hOwner" );
+	NETVAR( basehandle_t, get_owner, "DT_BaseCombatWeapon", "m_hOwner" );
 	
 	NETVAR( float, get_next_primary_attack, "DT_BaseCombatWeapon", "m_flNextPrimaryAttack" );
 	NETVAR( float, get_next_secondary_attack, "DT_BaseCombatWeapon", "m_flNextSecondaryAttack" );
@@ -98,10 +95,11 @@ struct player_t : public combat_character_t
 
 	NETVAR(int, get_armor, "DT_CSPlayer", "m_ArmorValue");
 	NETVAR( int, get_health, "DT_BasePlayer", "m_iHealth" );
-	NETVAR( int*, get_weapons, "DT_BasePlayer", "m_hMyWeapons" );
+	
+	NETVAR( unsigned int*, get_weapons, "DT_BasePlayer", "m_hMyWeapons" );
 
 	NETVAR( short, get_lifestate, "DT_BasePlayer", "m_lifeState" );
-	NETVAR( CBaseHandle, get_weapon_handle, "DT_BaseCombatCharacter", "m_hActiveWeapon" );
+	NETVAR( basehandle_t, get_weapon_handle, "DT_BaseCombatCharacter", "m_hActiveWeapon" );
 
 	NETVAR( math::vec3_t, get_velocity, "DT_BasePlayer", "m_vecVelocity[0]" );
 	NETVAR( math::vec3_t, get_view_offset, "DT_BasePlayer", "m_vecViewOffset[0]" );

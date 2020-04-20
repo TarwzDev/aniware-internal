@@ -10,7 +10,7 @@ namespace aimbot
 		if( pl == ctx::client.local )
 			return false;
 
-		if ( !pl->is_alive( ) || pl->get_flags( ).has_flag( Flags_t::fl_frozen ) )
+		if ( !pl->is_alive( ) || pl->get_flags( ).has_flag( flags_t::fl_frozen ) )
 			return false;
 
 		if ( pl->is_immune( ) )
@@ -24,7 +24,7 @@ namespace aimbot
 		if ( !weapon || weapon->get_ammo( ) <= 0 )
 			return false;
 		
-		if ( ( weapon->get_definition_index( ) == Weapon_t::weapon_revolver ) && ( weapon->ready_time( ) > ctx::csgo.globals->curtime ) )
+		if ( ( weapon->get_definition_index( ) == weapon_index_t::weapon_revolver ) && ( weapon->ready_time( ) > ctx::csgo.globals->curtime ) )
 			return false;
 
 		return true;
@@ -43,7 +43,7 @@ namespace aimbot
 			data.points.push_back( point );
 		};
 
-		for ( auto i = config::get< bool >( ctx::cfg.aim_body ) ? 2 : 0; i < hitbox_max; i++ )
+		for ( auto i = config::get< bool >( ctx::cfg.aim_body ) ? 2 : 0; i < Hitboxes_t::hitbox_max; i++ )
 		{
 			append_point( data, data.pl->get_hitbox_pos( i ), data.pl );
 		}
